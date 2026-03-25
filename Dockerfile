@@ -1,5 +1,5 @@
 # Use a minimal base image for alma linux (matching JLab)
-FROM almalinux:latest
+FROM almalinux:9
 
 # Copy the installation script into the container
 COPY DockerInstall.sh /DockerInstall.sh
