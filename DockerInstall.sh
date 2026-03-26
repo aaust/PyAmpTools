@@ -7,6 +7,9 @@ set -o pipefail  # Fail on first error in pipelines
 GH_USERNAME=$1
 GH_PAT=$2
 
+# No pip cache to safe space:
+export PIP_NO_CACHE_DIR=1
+
 echo "Using GitHub credentials for cloning private repositories..."
 
 # Overwrite /bin/sh with bash (some Debian images use dash by default)
@@ -40,12 +43,12 @@ dnf install -y --allowerasing \
     openmpi openmpi-devel boost-devel sqlite-devel \
     binutils libX11-devel libXpm-devel libXft-devel libXext-devel python openssl-devel \
     xrootd-client-devel xrootd-libs-devel \
-    gcc-gfortran pcre-devel \
+    gcc-gfortran pcre-devel tbb tbb-devel \
     mesa-libGL-devel mesa-libGLU-devel glew-devel ftgl-devel mysql-devel \
     fftw-devel cfitsio-devel graphviz-devel libuuid-devel \
     avahi-compat-libdns_sd-devel openldap-devel python-devel python3-numpy \
     libxml2-devel gsl-devel readline-devel qt5-qtwebengine-devel \
-    R-devel R-Rcpp-devel R-RInside-devel diffutils poppler-util ImageMagick && \
+    R-devel R-Rcpp-devel R-RInside-devel diffutils ImageMagick && \
     dnf clean all  # Clean package lists to reduce image size
 source /etc/profile.d/modules.sh
 ########################################################################################################################
