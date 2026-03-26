@@ -61,9 +61,9 @@ source "/opt/conda/etc/profile.d/conda.sh"
 conda activate
 
 # Clone PyAmpTools using BuildKit Secrets, then remove credentials from git config
-git clone https://${GH_USERNAME}:${GH_PAT}@github.com/lan13005/PyAmpTools.git --recurse-submodules
+git clone https://${GH_USERNAME}:${GH_PAT}@github.com/aaust/PyAmpTools.git --recurse-submodules
 cd PyAmpTools
-git remote set-url origin https://github.com/lan13005/PyAmpTools.git  # Remove credentials
+git remote set-url origin https://github.com/aaust/PyAmpTools.git  # Remove credentials
 conda create --name pyamptools python=3.9 -y
 conda activate pyamptools
 pip install -e .[dev]

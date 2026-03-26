@@ -66,7 +66,7 @@
 
 # Specify ROOT, compiler, python, and cmake versions
 conda activate pyamptools # activate the conda environment
-export ROOT_VERS=6.28.06
+export ROOT_VERS=6.32.20
 export GCC_VERS=$(gcc --version | head -n1 | awk '{print $3}')
 export PYTHON_VERS=$(python3 -V 2>&1 | grep -Po '(?<=Python )(.+)')
 export PYTHON3_EXECUTABLE=$(readlink -f $(which python3))
