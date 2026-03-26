@@ -7,6 +7,9 @@ set -o pipefail  # Fail on first error in pipelines
 GH_USERNAME=$1
 GH_PAT=$2
 
+# No pip cache to safe space:
+export PIP_NO_CACHE_DIR=1
+
 echo "Using GitHub credentials for cloning private repositories..."
 
 # Overwrite /bin/sh with bash (some Debian images use dash by default)

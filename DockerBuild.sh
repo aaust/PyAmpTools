@@ -14,8 +14,8 @@ fi
 
 ########################################################################################################################
 # (BUILDING ON MACOS) Export macOS system certificates to root-certificates.crt
-security export -t certs -f pemseq -k /System/Library/Keychains/SystemRootCertificates.keychain > root-certificates.crt
-security export -t certs -f pemseq -k /Library/Keychains/System.keychain >> root-certificates.crt
+#security export -t certs -f pemseq -k /System/Library/Keychains/SystemRootCertificates.keychain > root-certificates.crt
+#security export -t certs -f pemseq -k /Library/Keychains/System.keychain >> root-certificates.crt
 ########################################################################################################################
 
 # Create a new buildx builder instance
@@ -27,7 +27,18 @@ docker buildx build \
     --no-cache \
     --secret id=gh_username,src=<(echo -n "$GH_USERNAME") \
     --secret id=gh_pat,src=<(echo -n "$GH_PAT") \
-    --output type=docker,dest=pyamptools.tar . &> docker_build.log
+    -t pyamptools:latest \
+    --load \
+    .
+
+    # Directly save to tar file
+    # --output type=docker,dest=pyamptools.tar \
+    # .
+
+    # Push directly to dockerhub instead:
+    # -t docker.io/aaustreg/pyamptools:latest \
+    # --push \
+    # .
 
 # To be done manually on the cluster
 # apptainer build pyamptools.sif docker-archive://pyamptools.tar # build singularity image file from archived tar file
