@@ -149,6 +149,7 @@ fi
 if [ ! -d root-${ROOT_VERS}.src ]; then
     curl -O https://root.cern/download/root_v${ROOT_VERS}.source.tar.gz |& tee -a ${LOG}
     tar xzf root_v${ROOT_VERS}.source.tar.gz |& tee -a ${LOG}
+    rm -f root_v${ROOT_VERS}.source.tar.gz
     mv root-${ROOT_VERS} root-${ROOT_VERS}.src |& tee -a ${LOG}
 else
     echo "Using existing source directory: root-${ROOT_VERS}.src"
@@ -174,6 +175,7 @@ fi
 # Build if needed
 if [ ! -d root-${ROOT_VERS}-gcc${GCC_VERS} ]; then
     nice ${CMAKE} --build root-${ROOT_VERS}-gcc${GCC_VERS}.build --target install -- -j${NTHREADS} |& tee -a ${LOG}
+    rm -rf root-${ROOT_VERS}-gcc${GCC_VERS}.build root-${ROOT_VERS}.src
 else
     echo "Skipping build and using existing root-${ROOT_VERS}-gcc${GCC_VERS}"
     echo "(Remove directory root-${ROOT_VERS}-gcc${GCC_VERS} and rerun if rebuild needed)"

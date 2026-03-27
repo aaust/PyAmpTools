@@ -48,7 +48,7 @@ dnf install -y --allowerasing \
     fftw-devel cfitsio-devel graphviz-devel libuuid-devel \
     avahi-compat-libdns_sd-devel openldap-devel python-devel python3-numpy \
     libxml2-devel gsl-devel readline-devel qt5-qtwebengine-devel \
-    R-devel R-Rcpp-devel R-RInside-devel diffutils ImageMagick && \
+    R-devel R-Rcpp-devel R-RInside-devel diffutils poppler-utils ImageMagick && \
     dnf clean all  # Clean package lists to reduce image size
 source /etc/profile.d/modules.sh
 ########################################################################################################################
